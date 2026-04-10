@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
+<h1>Туристичні поїздки</h1>
+
+<table border="1">
+  <tr>
+    <th>Країна</th>
+    <th>Туроператор</th>
+    <th>Ціна</th>
+    <th>Днів</th>
+  </tr>
+  {% for trip in trips %}
+  <tr>
+    <td>{{ trip.країна }}</td>
+    <td>{{ trip.туроператор }}</td>
+    <td>{{ trip.ціна }} USD</td>
+    <td>{{ trip.кількість_днів }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<form action="/tour_operator">
+  <input type="text" name="findTour" placeholder="Введи щось" />
+  <button type="submit">Відправити</button>
+</form>
+
+{% if result %}
+<p>{{ result }}</p>
+{% endif %}
+
+<form action="/tours" method="GET">
+  <input type="number" name="n" />
+  <button type="submit">Шукати</button>
+</form>
+
+{% if resultA %}
+<p>{{ resultA }}</p>
+{% endif %}
+
+<form action="/the_most_expensive" method="GET">
+  <input type="submit" name="max" value="Type here" />
+</form>
+
+{% if mostExp %}
+<p>{{ mostExp }}</p>
+{% endif %} 
+
+
+{% endblock %}

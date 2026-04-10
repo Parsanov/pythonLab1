@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if result %}
+<table border="1">
+    <tr>
+        <th>Країна</th>
+        <th>Туроператор</th>
+        <th>Ціна</th>
+        <th>Днів</th>
+    </tr>
+    {% for t in result %}
+    <tr>
+        <td>{{ t.країна }}</td>
+        <td>{{ t.туроператор }}</td>
+        <td>{{ t.ціна }} USD</td>
+        <td>{{ t.кількість_днів }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% elif value %}
+<p>Немає даних</p>
+{% endif %}
+
+{% endblock %}

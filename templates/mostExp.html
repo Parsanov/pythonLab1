@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if mostExp %}
+<table border="1">
+    <tr>
+        <th>Країна</th>
+        <th>Туроператор</th>
+        <th>Ціна</th>
+        <th>Днів</th>
+    </tr>
+    <tr>
+        <td>{{ mostExp.країна }}</td>
+        <td>{{ mostExp.туроператор }}</td>
+        <td>{{ mostExp.ціна }} USD</td>
+        <td>{{ mostExp.кількість_днів }}</td>
+    </tr>
+</table>
+{% else %}
+<p>Немає даних</p>
+{% endif %}
+
+{% endblock %}

@@ -1,26 +1,32 @@
 {% extends 'base.html' %}
-
 {% block body %}
 
-{% if result %}
-<table border="1">
-    <tr>
-        <th>Країна</th>
-        <th>Туроператор</th>
-        <th>Ціна</th>
-        <th>Днів</th>
-    </tr>
-    {% for t in result %}
-    <tr>
+<h1>Тури щонайменше N днів</h1>
+
+<form action="/days" method="GET">
+  <input type="number" name="n" placeholder="Кількість днів" />
+  <button type="submit">Знайти</button>
+</form>
+
+{% if searched %}
+    {% if result %}
+    <table>
+      <tr><th>Країна</th><th>Туроператор</th><th>Ціна</th><th>Днів</th></tr>
+      {% for t in result %}
+      <tr>
         <td>{{ t.країна }}</td>
         <td>{{ t.туроператор }}</td>
         <td>{{ t.ціна }} USD</td>
         <td>{{ t.кількість_днів }}</td>
-    </tr>
-    {% endfor %}
-</table>
-{% elif value %}
-<p>Немає даних</p>
+      </tr>
+      {% endfor %}
+    </table>
+    {% elif result is not none %}
+    <img src="{{ url_for('static', filename='no_data.png') }}" alt="no data" width="200">
+    <p class="no-data">Немає даних</p>
+    {% else %}
+    <p class="no-data">Введіть кількість днів</p>
+    {% endif %}
 {% endif %}
 
 {% endblock %}

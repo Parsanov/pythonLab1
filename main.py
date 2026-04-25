@@ -21,12 +21,13 @@ def findDays():
     result = None
     n_raw = request.args.get("n")
     searched = "n" in request.args
-    if n_raw is not None and n_raw != "":
-        n = int(n_raw)
-        result = [t for t in trips if t["кількість_днів"] >= n]
+    try:
+        if n_raw is not None and n_raw != "":
+            n = int(n_raw)
+            result = [t for t in trips if t["кількість_днів"] >= n]
+    except ValueError:
+        result = []
     return render_template("days.html", result=result, searched=searched)
-
-
 
 @app.route("/the_most_expensive")
 def Expensive():
